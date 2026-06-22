@@ -153,3 +153,54 @@ Rules:
 
 Return valid JSON only.
 `;
+
+export const PROMPT_TEMPLATE = `
+## USER QUESTION
+
+{{USER_QUERY}}
+
+## WEB SEARCH RESULTS
+
+{{WEB_SEARCH_RESULTS}}
+
+Analyze the question using the framework defined in the system prompt.
+
+Requirements:
+
+1. Identify the query type:
+   - Company-specific
+   - Comparison
+   - Sector / Theme
+   - Macro / Market
+
+2. Extract:
+   - Primary company (if any)
+   - Ticker (if any)
+
+3. Build a structured answer:
+
+## Quick Answer
+Direct answer in 1-3 sentences.
+
+## Current Situation
+What is happening now?
+
+## Why It Is Happening
+What evidence supports the explanation?
+
+## Companies / Assets To Watch
+Mention relevant companies, ETFs, sectors, commodities, and tickers.
+
+## Risks & Uncertainties
+What could change the outlook?
+
+## What To Watch Next
+Future catalysts.
+
+## Bottom Line
+Most important takeaway.
+
+Generate 3 intelligent follow-up questions.
+
+Return valid JSON only.
+`;
