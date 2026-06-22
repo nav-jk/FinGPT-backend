@@ -219,7 +219,14 @@ app.post('/chat', async (req, res) => {
         }
 
         // 6. Chart
-        const chartData = await getCompanyChart(parsedResponse.companyName);
+        let chartData = {};
+
+        try {
+            chartData =
+                (await getCompanyChart(parsedResponse.companyName)) || {};
+        } catch (err) {
+            console.error("Chart fetch failed:", err.message);
+        }
 
         res.json({
             conversationId: convId,
@@ -230,9 +237,11 @@ app.post('/chat', async (req, res) => {
             answer: parsedResponse.answer,
             followUps: parsedResponse.followUps,
             chart: chartData,
-            sources: results.map(r => ({ title: r.title, url: r.url }))
+            sources: results.map(r => ({
+                title: r.title,
+                url: r.url
+            }))
         });
-
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Search failed', message: err.message });
