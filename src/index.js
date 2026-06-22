@@ -38,7 +38,7 @@ const app = express();
 const PORT = 3001;
 
 const tvly = tavily({ apiKey: process.env.TAVILY_API_KEY });
-const client = new OpenRouter({ apiKey: process.env.OPEN_ROUTER_API_KEY });
+const client = new OpenRouter({ apiKey: process.env.OPENROUTER_API_KEY });
 
 app.use(express.json());
 
