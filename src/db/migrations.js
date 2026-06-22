@@ -52,8 +52,7 @@ export async function runMigrations() {
     // Index for fast cache lookups
     await query(`
         CREATE INDEX IF NOT EXISTS idx_search_cache_normalized
-        ON search_cache(normalized_query)
-        WHERE expires_at > NOW()
+        ON search_cache(normalized_query, expires_at)
     `);
 
     await query(`
