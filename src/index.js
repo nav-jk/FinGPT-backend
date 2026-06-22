@@ -5,6 +5,7 @@ import express from 'express';
 import { tavily } from '@tavily/core';
 import { OpenRouter } from '@openrouter/sdk';
 import { randomUUID } from 'crypto';
+import cors from 'cors';
 
 import { getCompanyChart } from './services/chart.js';
 import { SYSTEM_PROMPT, PROMPT_TEMPLATE } from './prompts/prompt.js';
@@ -41,8 +42,9 @@ const tvly = tavily({ apiKey: process.env.TAVILY_API_KEY });
 const client = new OpenRouter({ apiKey: process.env.OPENROUTER_API_KEY });
 
 app.use(express.json());
+app.use(cors());  
 
-// ─── Startup ──────────────────────────────────────────────────────────────────
+//Startup 
 
 await runMigrations();
 
